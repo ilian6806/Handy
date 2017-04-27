@@ -60,6 +60,17 @@ _.each([
     ], [
         '_.each([2, 4], function () { /* log(this); */ })',
         '_.forIn({ n: 2, m: 4 }, function () { /* log(this); */ })',
+    ], [
+        'var myMath = new Handy.Mathematics(); myMath.rand(10, 30);',
+        'var myStr  = new Handy.Strings();     myStr.pad(34, 4);',
+        'var myArr  = new Handy.Arrays();      myArr.indexOf([3, 5, 7, 8], 5);',
+        'var myConv = Handy.ConvertBase;       myConv.dec2bin("11");',
+        'var myIs   = Handy.is;                myIs.number("11");',
+    ], [
+        'Handy.debounce(function () {}, 500)',
+        'Handy.sleep(5)',
+        'Handy.each([2, 4], function () { /* log(this); */ })',
+        'Handy.forIn({ n: 2, m: 4 }, function () { /* log(this); */ })',
     ]
 ], function () {
     log('');

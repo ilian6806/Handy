@@ -9,9 +9,26 @@
 
     'use strict';
 
-    /**
-     * Basic type checking
-     */
+    // -----------------------------------------------------//
+    // ----------------- Main constructor ------------------//
+    // -----------------------------------------------------//
+
+    function Handy() {
+
+        this.conv = ConvertBase;
+        this.is = is;
+
+        this.math = new Mathematics();
+        this.str = new Strings();
+        this.arr = new Arrays();
+    }
+
+
+
+    // ----------------------------------------------------- //
+    // ---------------- Basic type checking ---------------- //
+    // ----------------------------------------------------- //
+
     var is = {
         number: function (p) {
             return (typeof p).toLowerCase() === 'number';
@@ -42,28 +59,6 @@
             is.not[type] = new Function('p', 'return ! (' + is[type] + ')(p)');
         }
     }
-
-
-
-    // ----------------------------------------------------- //
-    // -------------------- Math utils --------------------- //
-    // ----------------------------------------------------- //
-
-    function Mathematics() { }
-
-    /**
-     * Returns number in range
-     */
-    Mathematics.prototype.clip = function (num, min, max) {
-        return Math.max(min, Math.min(num, max));
-    };
-
-    /**
-     * Return random integer in range
-     */
-    Mathematics.prototype.rand = function (min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
 
 
 
@@ -111,6 +106,28 @@
     // hexadecimal to decimal
     ConvertBase.hex2dec = function (num) {
         return ConvertBase(num).from(16).to(10);
+    };
+
+
+
+    // ----------------------------------------------------- //
+    // -------------------- Math utils --------------------- //
+    // ----------------------------------------------------- //
+
+    function Mathematics() { }
+
+    /**
+     * Returns number in range
+     */
+    Mathematics.prototype.clip = function (num, min, max) {
+        return Math.max(min, Math.min(num, max));
+    };
+
+    /**
+     * Return random integer in range
+     */
+    Mathematics.prototype.rand = function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
 
@@ -220,24 +237,15 @@
     };
 
 
-    // -----------------------------------------------------//
-    // ----------------- Main constructor ------------------//
-    // -----------------------------------------------------//
 
-    function Handy() {
-
-        this.conv = ConvertBase;
-        this.is = is;
-
-        this.math = new Mathematics();
-        this.str = new Strings();
-        this.arr = new Arrays();
-    }
+    // ----------------------------------------------------- //
+    // -------------------- Iterators ---------------------- //
+    // ----------------------------------------------------- //
 
     /**
      * Iterate over array
      */
-    Handy.prototype.each = function (arr, func) {
+    Handy.prototype.each = Handy.each = function (arr, func) {
         for (var i = 0 ; i < arr.length; i++) {
             func.call(arr[i], i);
         }
@@ -246,7 +254,7 @@
     /**
      * Iterate over object
      */
-    Handy.prototype.forIn = function (obj, func) {
+    Handy.prototype.forIn = Handy.forIn = function (obj, func) {
         for (var prop in obj) {
             if (obj.hasOwnProperty(prop)) {
                 func.call(obj[prop], prop);
@@ -254,10 +262,16 @@
         }
     };
 
+
+
+    // ----------------------------------------------------- //
+    // ----------------- Timing functions ------------------ //
+    // ----------------------------------------------------- //
+
     /**
      * Limits the rate at which a function can fire
      */
-    Handy.prototype.debounce = function (func, guardTime) {
+    Handy.prototype.debounce = Handy.debounce = function (func, guardTime) {
 
         var last = 0;
         var time = guardTime || 100
@@ -274,10 +288,25 @@
     /**
      * Block the main thread for the specified amount of time
      */
-    Handy.prototype.sleep = function (miliseconds) {
+    Handy.prototype.sleep = Handy.sleep = function (miliseconds) {
         var stopTime = +new Date() + miliseconds;
         while (stopTime >= +new Date()) { };
     };
+
+
+
+    // ----------------------------------------------------- //
+    // ----- Enable static usage of separate modules ------- //
+    // ----------------------------------------------------- //
+
+    Handy.ConvertBase = ConvertBase;
+    Handy.is = is;
+
+    Handy.Mathematics = Mathematics;
+    Handy.Strings = Strings;
+    Handy.Arrays = Arrays;
+
+
 
     scope.Handy = Handy;
 
