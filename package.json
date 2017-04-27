@@ -2,7 +2,7 @@
   "name": "Handy",
   "version": "1.0.0",
   "description": "Set of useful js functions",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "test": "test"
   },

@@ -1,4 +1,3 @@
-
 /**
  * Custom tests and logging.
  * Left this in global scope to be able to test in console. 
@@ -32,6 +31,7 @@ _.each([
         '_.arr.indexOf([3, 5, 7, 8], 5)',
         '_.arr.removeDuplicates([3, 5, 5, 5, 7, 8, 8])',
         '_.arr.removeElement([3, 5, 7, 8, 6, 6, 6], 6)',
+        '_.arr.filter([3, 5, 7, 8], function (el) { return el < 6; })',
     ], [
         '_.is.number(2)',
         '_.is.string("2")',
@@ -49,8 +49,17 @@ _.each([
         '_.is.not.htmlElement(document.body)',
         '_.is.not.undefined(window.blabla)',
     ], [
-        '_.each([2, 4], function () { log(this) })',
-        '_.forIn({ n: 2, m: 4 }, function () { log(this); })',
+        '_.conv("011").from(2).to(10)',
+        '_.conv.bin2dec("011")',
+        '_.conv.dec2hex("26")',
+        '_.conv.hex2bin("f9")',
+        '_.conv.dec2bin("11")',
+    ], [
+        '_.debounce(function () {}, 500)',
+        '_.sleep(5)',
+    ], [
+        '_.each([2, 4], function () { /* log(this); */ })',
+        '_.forIn({ n: 2, m: 4 }, function () { /* log(this); */ })',
     ]
 ], function () {
     log('');

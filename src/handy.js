@@ -68,7 +68,55 @@
 
 
     // ----------------------------------------------------- //
-    // -------------------- Math utils --------------------- //
+    // -------------------- Converters --------------------- //
+    // ----------------------------------------------------- //
+
+    function ConvertBase(num) {
+        return {
+            from: function (baseFrom) {
+                return {
+                    to: function (baseTo) {
+                        return parseInt(num, baseFrom).toString(baseTo);
+                    }
+                };
+            }
+        };
+    };
+
+    // binary to decimal
+    ConvertBase.bin2dec = function (num) {
+        return ConvertBase(num).from(2).to(10);
+    };
+
+    // binary to hexadecimal
+    ConvertBase.bin2hex = function (num) {
+        return ConvertBase(num).from(2).to(16);
+    };
+
+    // decimal to binary
+    ConvertBase.dec2bin = function (num) {
+        return ConvertBase(num).from(10).to(2);
+    };
+
+    // decimal to hexadecimal
+    ConvertBase.dec2hex = function (num) {
+        return ConvertBase(num).from(10).to(16);
+    };
+
+    // hexadecimal to binary
+    ConvertBase.hex2bin = function (num) {
+        return ConvertBase(num).from(16).to(2);
+    };
+
+    // hexadecimal to decimal
+    ConvertBase.hex2dec = function (num) {
+        return ConvertBase(num).from(16).to(10);
+    };
+
+
+
+    // ----------------------------------------------------- //
+    // -------------------- String utils ------------------- //
     // ----------------------------------------------------- //
     
     function Strings() {}
@@ -158,6 +206,18 @@
         return arr;
     };
 
+    /**
+     * Filter an array
+     */
+    Arrays.prototype.filter = function (arr, func) {
+        var res = [];
+        for (var i = 0, len = arr.length; i < len; i++) {
+            if (func.call(null, arr[i], i, arr)) {
+                res.push(arr[i]);
+            }
+        }
+        return res;
+    };
 
 
     // -----------------------------------------------------//
@@ -165,10 +225,13 @@
     // -----------------------------------------------------//
 
     function Handy() {
+
+        this.conv = ConvertBase;
+        this.is = is;
+
         this.math = new Mathematics();
         this.str = new Strings();
         this.arr = new Arrays();
-        this.is = is;
     }
 
     /**
@@ -206,6 +269,14 @@
                 return func.apply(this, arguments);
             }
         };
+    };
+
+    /**
+     * Block the main thread for the specified amount of time
+     */
+    Handy.prototype.sleep = function (miliseconds) {
+        var stopTime = +new Date() + miliseconds;
+        while (stopTime >= +new Date()) { };
     };
 
     scope.Handy = Handy;
