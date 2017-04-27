@@ -29,6 +29,15 @@ div:last-child:after {
 	animation: blink 1.5s infinite;
 }
 
+.github-ribbon {
+	display: inline-block;
+	position: fixed;
+	top: 0;
+	right: 0;
+    border: 0;
+    z-index: 100;
+}
+
 @-keyframes 'blink' {
     0% { opacity:0 }
     25% { opacity:1 }

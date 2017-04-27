@@ -56,5 +56,8 @@ _.each([
     log('');
     _.each(this, function () {
         log(this.toString());
+        log(this.toString());
+        log(this.toString());
+        log(this.toString());
     });
 });
