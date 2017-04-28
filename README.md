@@ -42,7 +42,22 @@ _.conv.dec2bin("11") === "1011";
 
 _.debounce(function () {}, 500) === undefined;
 _.sleep(5) === undefined;
+_.after(1, function () { }).after(3, function () { }) === {};
 
 _.each([2, 4], function () { /* log(this); */ }) === undefined;
 _.forIn({ n: 2, m: 4 }, function () { /* log(this); */ }) === undefined;
+
+// load only needed modules
+var myMath = new Handy.Mathematics(); myMath.rand(10, 30); === 29;
+var myStr = new Handy.Strings(); myStr.pad(34, 4); === "0034";
+var myArr = new Handy.Arrays(); myArr.indexOf([3, 5, 7, 8], 5); === 1;
+var myConv = Handy.ConvertBase; myConv.dec2bin("11"); === "1011";
+var myIs = Handy.is; myIs.number("11"); === false;
+
+// static usage
+Handy.debounce(function () {}, 500) === undefined;
+Handy.sleep(5) === undefined;
+Handy.after(1, function () { }).after(3, function () { }) === {};
+Handy.each([2, 4], function () { /* log(this); */ }) === undefined;
+Handy.forIn({ n: 2, m: 4 }, function () { /* log(this); */ }) === undefined;
 ```

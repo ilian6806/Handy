@@ -293,6 +293,47 @@
         while (stopTime >= +new Date()) { };
     };
 
+    /**
+     * Execute function after given time + chaining
+     */
+    Handy.prototype.after = Handy.after = function (t, fn) {
+
+        var queue = [], self, timer;
+
+        function schedule(t, fn) {
+            var execute = function() {
+                timer = null;
+                fn();
+                if (queue.length) {
+                    var item = queue.shift();
+                    schedule(item.t, item.fn);
+                }
+            };
+            if (t > 0) {
+                timer = setTimeout(execute, t);
+            } else {
+                execute();
+            }
+        }
+
+        self = {
+            after: function(t, fn) {
+                if (queue.length || timer) {
+                    queue.push({fn: fn, t: t});
+                } else {
+                    schedule(t, fn);
+                }
+                return self;
+            },
+            cancel: function () {
+                clearTimeout(timer);
+                queue = [];
+            }
+        };
+
+        return self.after(t, fn);
+    };
+
 
 
     // ----------------------------------------------------- //
