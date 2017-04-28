@@ -117,8 +117,14 @@ var _ = new Handy();
         '_.conv.dec2bin("11")',
     ], [
         '_.debounce(function () {}, 500)',
+        '_.debounceTimeout(function () {}, 500)',
         '_.sleep(5)',
         '_.after(1, function () { }).after(3, function () { })',
+        'var canOnlyBeExecutedOnce = _.once(function() { });',
+    ], [
+        '_.getAbsoluteUrl("/Handy")',
+        '_.matchesSelector(document.body, "div.container")',
+        '_.stripTags("<b><i>Some text</i></b>")',
     ], [
         '_.each([2, 4], function () { /* log(this); */ })',
         '_.forIn({ n: 2, m: 4 }, function () { /* log(this); */ })',

@@ -286,6 +286,38 @@
     };
 
     /**
+     * Debounce implementation with timeout
+     */
+    Handy.prototype.debounceTimeout = Handy.debounceTimeout = function (func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
+    /**
+     * Block the main thread for the specified amount of time
+     */
+    Handy.prototype.once = Handy.once = function (fn, context) { 
+        var result;
+        return function() {
+            if (fn) {
+                result = fn.apply(context || this, arguments);
+                fn = null;
+            }
+            return result;
+        };
+    };
+
+    /**
      * Block the main thread for the specified amount of time
      */
     Handy.prototype.sleep = Handy.sleep = function (miliseconds) {
@@ -301,7 +333,7 @@
         var queue = [], self, timer;
 
         function schedule(t, fn) {
-            var execute = function() {
+            var execute = function () {
                 timer = null;
                 fn();
                 if (queue.length) {
@@ -317,7 +349,7 @@
         }
 
         self = {
-            after: function(t, fn) {
+            after: function (t, fn) {
                 if (queue.length || timer) {
                     queue.push({fn: fn, t: t});
                 } else {
@@ -332,6 +364,42 @@
         };
 
         return self.after(t, fn);
+    };
+
+    // ----------------------------------------------------- //
+    // --------------------- Others ------------------------ //
+    // ----------------------------------------------------- //
+
+    /**
+     * Returns absolute url from string
+     */
+    Handy.prototype.getAbsoluteUrl = Handy.getAbsoluteUrl = (function() {
+        var a;
+        return function(url) {
+            if (!a) a = document.createElement('a');
+            a.href = url;
+            return a.href;
+        };
+    })();
+
+    /**
+     * Validate if an element matches given selector
+     */
+    Handy.prototype.matchesSelector = Handy.matchesSelector = function (el, selector) {
+        var p = Element.prototype;
+        var f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function(s) {
+            return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
+        };
+        return f.call(el, selector);
+    };
+
+    /**
+     * Remove html tags from text
+     */
+    Handy.prototype.stripTags = Handy.stripTags = function (htmlstr) {
+        var div = document.createElement('div');
+        div.innerHTML = htmlstr;
+        return div.textContent;
     };
 
 

@@ -40,12 +40,18 @@ _.conv.dec2hex("26") === "1a";
 _.conv.hex2bin("f9") === "11111001";
 _.conv.dec2bin("11") === "1011";
 
-_.debounce(function () {}, 500) === undefined;
-_.sleep(5) === undefined;
-_.after(1, function () { }).after(3, function () { }) === {};
+_.debounce(function () {}, 500);
+_.debounceTimeout(function () {}, 500);
+_.sleep(5);
+_.after(1, function () { }).after(3, function () { });
+var canOnlyBeExecutedOnce = _.once(function() { });
 
-_.each([2, 4], function () { /* log(this); */ }) === undefined;
-_.forIn({ n: 2, m: 4 }, function () { /* log(this); */ }) === undefined;
+_.getAbsoluteUrl("/Handy");
+_.matchesSelector(document.body, "div.container");
+_.stripTags("<b><i>Some text</i></b>");
+
+_.each([2, 4], function () { console.log(this); });
+_.forIn({ n: 2, m: 4 }, function () { console.log(this); });
 
 // load only needed modules
 var myMath = new Handy.Mathematics(); myMath.rand(10, 30); === 29;
@@ -55,9 +61,9 @@ var myConv = Handy.ConvertBase; myConv.dec2bin("11"); === "1011";
 var myIs = Handy.is; myIs.number("11"); === false;
 
 // static usage
-Handy.debounce(function () {}, 500) === undefined;
-Handy.sleep(5) === undefined;
-Handy.after(1, function () { }).after(3, function () { }) === {};
-Handy.each([2, 4], function () { /* log(this); */ }) === undefined;
-Handy.forIn({ n: 2, m: 4 }, function () { /* log(this); */ }) === undefined;
+Handy.debounce(function () {}, 500);
+Handy.sleep(5);
+Handy.after(1, function () { }).after(3, function () { });
+Handy.each([2, 4], function () { console.log(this); });
+Handy.forIn({ n: 2, m: 4 }, function () { console.log(this); });
 ```
