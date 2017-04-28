@@ -8,8 +8,13 @@ writeLine = function (m, doEval) {
         d.innerHTML = JSON.stringify(m);
     } else {
         d.innerHTML = m;
+        var result = JSON.stringify(eval(m));
         if (doEval && !! m) {
-            d.innerHTML += ' === ' + JSON.stringify(eval(m)) + ';'
+            if (result == undefined) {
+                d.innerHTML += ';'
+            } else {
+                d.innerHTML += ' === ' + result + ';'
+            }
         }
     }
     document.body.appendChild(d.toCode());

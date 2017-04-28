@@ -304,7 +304,7 @@
     };
 
     /**
-     * Block the main thread for the specified amount of time
+     * Return function, that can be called only once
      */
     Handy.prototype.once = Handy.once = function (fn, context) { 
         var result;
