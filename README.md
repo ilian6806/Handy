@@ -1,6 +1,9 @@
 # Handy
 Set of useful js functions
 
+![](https://img.shields.io/gemnasium/mathiasbynens/he.svg) ![](https://img.shields.io/npm/l/express.svg)
+
+
 
 ```javascript
 var _ = new Handy();
