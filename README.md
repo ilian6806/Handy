@@ -1,7 +1,7 @@
 # Handy
 Set of useful js functions
 
-![](https://img.shields.io/gemnasium/mathiasbynens/he.svg) ![](https://img.shields.io/npm/l/express.svg)
+[![Code Climate](https://codeclimate.com/github/ilian6806/Handy/badges/gpa.svg)](https://codeclimate.com/github/ilian6806/Handy) [![Issue Count](https://codeclimate.com/github/ilian6806/Handy/badges/issue_count.svg)](https://codeclimate.com/github/ilian6806/Handy) ![](https://img.shields.io/gemnasium/mathiasbynens/he.svg) ![](https://img.shields.io/npm/l/express.svg)
 
 
 
