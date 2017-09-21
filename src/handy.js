@@ -40,7 +40,7 @@
             return p instanceof Array;
         },
         object: function (p) {
-            return (typeof p).toLowerCase() === 'object' && p.constructor == Object;
+            return (typeof p).toLowerCase() === 'object' && p.constructor === Object;
         },
         func: function (p) {
             return !!(p && p.constructor && p.call && p.apply);
@@ -76,7 +76,7 @@
                 };
             }
         };
-    };
+    }
 
     // binary to decimal
     ConvertBase.bin2dec = function (num) {
@@ -145,7 +145,7 @@
         args = Array.prototype.slice.call(arguments);
         str = args.shift();
         return str.replace(/{(\d+)}/g, function(match, number) {
-            return typeof args[number] != 'undefined' ? args[number] : match;
+            return typeof args[number] !== 'undefined' ? args[number] : match;
         });
     };
 

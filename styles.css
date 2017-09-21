@@ -17,7 +17,7 @@ html {
 }
 
 .sublime br::selection,
-.sublime div::selection, 
+.sublime div::selection,
 .sublime span::selection {
     background: #383830;
 }
@@ -51,10 +51,11 @@ html {
     content: "|";
     color: white;
     -webkit-animation: blink 1.5s infinite;
+    -moz-animation: blink 1.5s infinite;
     animation: blink 1.5s infinite;
 }
 
-@-keyframes 'blink' {
+@keyframes 'blink' {
     0% { opacity:0 }
     25% { opacity:1 }
     50% { opacity: 1 }
@@ -163,37 +164,37 @@ html {
     border-color: rgba(255, 255, 255, 0.7);
 }
 
-.github-fork-ribbon.left-top, 
+.github-fork-ribbon.left-top,
 .github-fork-ribbon.left-bottom {
     right: auto;
     left: 0;
 }
 
-.github-fork-ribbon.left-bottom, 
+.github-fork-ribbon.left-bottom,
 .github-fork-ribbon.right-bottom {
     top: auto;
     bottom: 0;
 }
 
-.github-fork-ribbon.left-top:before, 
+.github-fork-ribbon.left-top:before,
 .github-fork-ribbon.left-top:after,
-.github-fork-ribbon.left-bottom:before, 
+.github-fork-ribbon.left-bottom:before,
 .github-fork-ribbon.left-bottom:after {
     right: auto;
     left: -3.23em;
 }
 
-.github-fork-ribbon.left-bottom:before, 
+.github-fork-ribbon.left-bottom:before,
 .github-fork-ribbon.left-bottom:after,
-.github-fork-ribbon.right-bottom:before, 
+.github-fork-ribbon.right-bottom:before,
 .github-fork-ribbon.right-bottom:after {
     top: auto;
     bottom: 3.23em;
 }
 
-.github-fork-ribbon.left-top:before, 
-.github-fork-ribbon.left-top:after, 
-.github-fork-ribbon.right-bottom:before, 
+.github-fork-ribbon.left-top:before,
+.github-fork-ribbon.left-top:after,
+.github-fork-ribbon.right-bottom:before,
 .github-fork-ribbon.right-bottom:after {
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);

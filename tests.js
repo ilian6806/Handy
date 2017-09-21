@@ -1,6 +1,6 @@
 /**
  * Custom tests and logging.
- * Left this in global scope to be able to test in console. 
+ * Left this in global scope to be able to test in console.
  */
 writeLine = function (m, doEval) {
     var d = document.createElement('div');
@@ -10,7 +10,7 @@ writeLine = function (m, doEval) {
         d.innerHTML = m;
         var result = JSON.stringify(eval(m));
         if (doEval && !! m) {
-            if (result == undefined) {
+            if (result === undefined) {
                 d.innerHTML += ';'
             } else {
                 d.innerHTML += ' === ' + result + ';'
@@ -71,7 +71,7 @@ var _ = new Handy();
             _.each(this, function () {
                 var command = this.toString();
                 queue.after(commandsDelay, function () {
-                    if (command.slice(0, 2) == '//') {
+                    if (command.slice(0, 2) === '//') {
                         writeComment(command);
                     } else {
                         writeLine(command, true);

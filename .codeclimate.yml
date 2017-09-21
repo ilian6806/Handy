@@ -11,12 +11,24 @@ engines:
         enabled: false
       no-new-func:
         enabled: false
+      max-statements:
+        enabled: false
       radix:
+        enabled: false
+      wrap-iife:
+        enabled: false
+      no-eval:
         enabled: false
   csslint:
     enabled: true
     checks:
       overqualified-elements:
+        enabled: false
+      errors:
+        enabled: false
+      text-indent:
+        enabled: false
+      box-sizing:
         enabled: false
   fixme:
     enabled: true
