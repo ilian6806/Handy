@@ -1,10 +1,10 @@
 /**
  * Set of most useful js functions
  * Autor: Ilian Iliev
- * 
+ *
  * Date: 27-04-2017
  */
- 
+
 (function (scope) {
 
     'use strict';
@@ -55,7 +55,7 @@
     };
 
     for (var type in is) {
-        if (is.hasOwnProperty(type) && type != 'not') {
+        if (is.hasOwnProperty(type) && type !== 'not') {
             is.not[type] = new Function('p', 'return ! (' + is[type] + ')(p)');
         }
     }
@@ -135,16 +135,16 @@
     // ----------------------------------------------------- //
     // -------------------- String utils ------------------- //
     // ----------------------------------------------------- //
-    
+
     function Strings() {}
 
     /**
      * Formated string
      */
     Strings.prototype.format = function (str, args) {
-        var args = Array.prototype.slice.call(arguments);
-        var str = args.shift();
-        return str.replace(/{(\d+)}/g, function(match, number) { 
+        args = Array.prototype.slice.call(arguments);
+        str = args.shift();
+        return str.replace(/{(\d+)}/g, function(match, number) {
             return typeof args[number] != 'undefined' ? args[number] : match;
         });
     };
@@ -153,7 +153,7 @@
      * Transforms to uppercase first letter of string
      */
     Strings.prototype.ucfirst = function (str) {
-        if ((typeof str).toLowerCase() != 'string') { return str; }
+        if ((typeof str).toLowerCase() !== 'string') { return str; }
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
@@ -171,7 +171,7 @@
     // ----------------------------------------------------- //
     // -------------------- Array utils -------------------- //
     // ----------------------------------------------------- //
-    
+
     function Arrays() {}
 
     /**
@@ -206,8 +206,8 @@
         results = Object.keys(results);
 
         if (isIntArr) {
-            for (var i = 0, len = results.length; i < len; i++) {
-                results[i] = parseInt(results[i]);
+            for (var j = 0, len = results.length; j < len; j++) {
+                results[j] = parseInt(results[j]);
             }
         }
 
@@ -218,7 +218,7 @@
      * Remove element from array
      */
     Arrays.prototype.removeElement = function (arr, el) {
-        if (!arr || !arr.splice || arr.indexOf(el) == -1) return false;
+        if (!arr || !arr.splice || arr.indexOf(el) === -1) return false;
         arr.splice(arr.indexOf(el), 1);
         return arr;
     };
@@ -229,7 +229,7 @@
     Arrays.prototype.filter = function (arr, func) {
         var res = [];
         for (var i = 0, len = arr.length; i < len; i++) {
-            if (func.call(null, arr[i], i, arr)) {
+            if (func.call(arr[i], arr[i], i, arr)) {
                 res.push(arr[i]);
             }
         }
@@ -306,7 +306,7 @@
     /**
      * Return function, that can be called only once
      */
-    Handy.prototype.once = Handy.once = function (fn, context) { 
+    Handy.prototype.once = Handy.once = function (fn, context) {
         var result;
         return function() {
             if (fn) {
@@ -322,7 +322,7 @@
      */
     Handy.prototype.sleep = Handy.sleep = function (miliseconds) {
         var stopTime = +new Date() + miliseconds;
-        while (stopTime >= +new Date()) { };
+        while (stopTime >= +new Date()) { }
     };
 
     /**

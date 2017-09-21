@@ -1,0 +1,25 @@
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  eslint:
+    enabled: true
+    checks:
+      no-empty:
+        enabled: false
+      no-new-func:
+        enabled: false
+      radix:
+        enabled: false
+  csslint:
+    enabled: true
+    checks:
+      overqualified-elements:
+        enabled: false
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - "**.js"
